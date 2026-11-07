@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jared L. Batoon — BSCS Portfolio</title>
+  <meta name="description" content="Personal Computer Science portfolio of Jared L. Batoon — BSCS student specializing in software development, algorithms, and digital solutions." />
+
+  <!-- Favicon Initials SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%232563eb'/><text x='50%' y='56%' font-size='42' font-weight='bold' fill='white' font-family='sans-serif' text-anchor='middle' dominant-baseline='middle'>JB</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN with Custom Blue/Cyan Palette -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            neonBlue: {
+              DEFAULT: '#00d2ff',
+              hover: '#38bdf8',
+              glow: 'rgba(0, 210, 255, 0.5)',
+            },
+            cyberBlue: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Custom Theme Stylesheet -->
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body class="min-h-screen bg-slate-50/60 dark:bg-[#070b14] text-slate-800 dark:text-slate-100 antialiased transition-colors duration-200">
+  
+  <!-- Background Cyber Pattern -->
+  <div class="fixed inset-0 bg-grid-pattern-blue pointer-events-none z-0 opacity-70"></div>
+
+  <!-- =========================================================================
+       1. HEADER / STICKY NAVIGATION
+       ========================================================================= -->
+  <header class="sticky top-0 z-40 w-full border-b border-blue-200/50 dark:border-cyan-500/20 bg-white/85 dark:bg-[#070b14]/85 backdrop-blur-md transition-colors">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Brand Name (No circular logo) -->
+      <a href="#home" class="flex flex-col group focus:outline-none">
+        <span id="brand-name" class="font-extrabold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
+          Jared L. Batoon
+        </span>
+        <span class="text-[10px] font-mono uppercase tracking-wider text-blue-600 dark:text-cyan-400/90 -mt-0.5">
+          BSCS Portfolio
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-6 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="#home" class="desktop-nav-link hover:text-blue-600 dark:hover:text-cyan-400 transition-colors py-1">Home</a>
+        <a href="#education" class="desktop-nav-link hover:text-blue-600 dark:hover:text-cyan-400 transition-colors py-1">Education</a>
+        <a href="#skills" class="desktop-nav-link hover:text-blue-600 dark:hover:text-cyan-400 transition-colors py-1">Skills</a>
+        <a href="#projects" class="desktop-nav-link hover:text-blue-600 dark:hover:text-cyan-400 transition-colors py-1">Projects</a>
+        <a href="#certificates" class="desktop-nav-link hover:text-blue-600 dark:hover:text-cyan-400 transition-colors py-1">Certificates</a>
+        <a href="#contact" class="desktop-nav-link hover:text-blue-600 dark:hover:text-cyan-400 transition-colors py-1">Contact</a>
+
+        <!-- Desktop Theme Toggle Button -->
+        <button 
+          type="button" 
+          class="theme-toggle-btn ml-2 p-2 rounded-full border border-blue-200/80 dark:border-cyan-500/30 hover:border-blue-400 dark:hover:border-cyan-400 bg-blue-50/50 dark:bg-cyan-500/10 focus:outline-none transition-all group hover:scale-105 active:scale-95 dark:shadow-[0_0_10px_rgba(0,210,255,0.3)]"
+          aria-label="Toggle Color Theme"
+          title="Toggle Light / Dark Mode"
+        >
+          <div class="theme-icon-container"></div>
+        </button>
+      </nav>
+
+      <!-- Mobile Right Controls (Theme Toggle & Hamburger) -->
+      <div class="flex items-center gap-2 md:hidden">
+        <button 
+          type="button" 
+          class="theme-toggle-btn p-2 rounded-full border border-blue-200/80 dark:border-cyan-500/30 bg-blue-50/50 dark:bg-cyan-500/10 focus:outline-none"
+          aria-label="Toggle Theme"
+        >
+          <div class="theme-icon-container"></div>
+        </button>
+
+        <button 
+          id="mobile-menu-toggle" 
+          type="button" 
+          class="p-2 rounded-lg border border-blue-200/80 dark:border-cyan-500/30 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-cyan-400 focus:outline-none transition-colors"
+          aria-label="Open Navigation Menu"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu-drawer" class="hidden md:hidden border-b border-blue-200/50 dark:border-cyan-500/20 bg-white/95 dark:bg-[#0a0f1d]/95 backdrop-blur-md px-4 py-3 space-y-2">
+      <a href="#home" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-cyan-500/10 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Home</a>
+      <a href="#education" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-cyan-500/10 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Education</a>
+      <a href="#skills" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-cyan-500/10 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Skills</a>
+      <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-cyan-500/10 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Projects</a>
+      <a href="#certificates" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-cyan-500/10 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Certificates</a>
+      <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-cyan-500/10 hover:text-blue-600 dark:hover:text-cyan-400 transition-colors">Contact</a>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================= -->
+  <main class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-16 sm:space-y-24">
+
+    <!-- =======================================================================
+         2. HERO / ABOUT ME SECTION
+         ======================================================================= -->
+    <section id="home" class="scroll-mt-24">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left: Profile Picture (Square with Glowing Border in Dark Mode) -->
+        <div class="md:col-span-5 flex flex-col items-center md:items-start text-center md:text-left">
+          <div class="relative group">
+            <!-- Glowing aura in dark mode -->
+            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-blue-600 via-cyan-400 to-indigo-600 opacity-25 dark:opacity-75 blur-md group-hover:opacity-100 transition duration-300"></div>
+            
+            <!-- Square Avatar Container (Enlarged) -->
+            <div class="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-2xl p-1.5 bg-white dark:bg-[#0c1324] border-2 border-blue-400 dark:border-cyan-400 dark:shadow-[0_0_30px_rgba(0,210,255,0.5)] overflow-hidden">
+              <img 
+                id="hero-profile-img" 
+                src="./assets/profile.jpg" 
+                alt="Jared L. Batoon" 
+                class="w-full h-full object-cover object-top rounded-xl transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Text & About Me -->
+        <div class="md:col-span-7 space-y-4 text-center md:text-left">
+          
+          <!-- Blue Heading Badge -->
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100/70 dark:bg-cyan-500/10 border border-blue-300/60 dark:border-cyan-500/30 text-xs font-semibold text-blue-700 dark:text-cyan-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-600 dark:bg-cyan-400"></span>
+            <span id="hero-welcome-badge">Welcome to My Portfolio</span>
+          </div>
+
+          <!-- Name & Tagline -->
+          <div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+              Jared L. Batoon
+            </h1>
+            <p class="text-xs sm:text-sm font-mono text-blue-600 dark:text-cyan-400 mt-1">
+              Computer Science • San Quintin, Abra
+            </p>
+          </div>
+
+          <!-- Introductory Paragraph -->
+          <p id="hero-intro-text" class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+            <!-- Dynamically populated from data.js -->
+          </p>
+
+          <!-- About Me Sub-heading & Summary -->
+          <div class="pt-2 border-t border-slate-200/70 dark:border-slate-800/80">
+            <h2 id="hero-about-heading" class="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-cyan-400">
+              About Me
+            </h2>
+            <p id="hero-summary-text" class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1.5 max-w-2xl">
+              <!-- Dynamically populated from data.js -->
+            </p>
+          </div>
+
+          <!-- Hero Action Buttons -->
+          <div class="pt-3 flex flex-wrap items-center justify-center md:justify-start gap-3">
+            <a 
+              href="#contact" 
+              class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 dark:bg-cyan-500 dark:hover:bg-cyan-400 dark:text-slate-950 text-white text-xs font-semibold transition-all shadow-sm hover:shadow dark:shadow-[0_0_15px_rgba(0,210,255,0.35)] flex items-center gap-1.5 active:scale-95"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+              <span>Get in Touch</span>
+            </a>
+
+            <a 
+              href="#projects" 
+              class="px-4 py-2 rounded-lg border border-blue-300 dark:border-cyan-500/40 hover:border-blue-500 dark:hover:border-cyan-400 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-cyan-400 bg-white/70 dark:bg-slate-900/60 transition-all flex items-center gap-1.5 active:scale-95"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                <polyline points="2 17 12 22 22 17"/>
+                <polyline points="2 12 12 17 22 12"/>
+              </svg>
+              <span>View Projects</span>
+            </a>
+
+            <!-- One-click Copy Email with tooltip -->
+            <div class="relative inline-block">
+              <button 
+                id="copy-email-btn"
+                type="button" 
+                class="px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-cyan-400 hover:border-blue-300 dark:hover:border-cyan-500/30 transition-all flex items-center gap-1.5 focus:outline-none"
+                title="Copy email to clipboard"
+              >
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                </svg>
+                <span>Copy Email</span>
+              </button>
+              <span id="copy-notice" class="opacity-0 pointer-events-none transition-opacity duration-200 absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white dark:bg-cyan-500 dark:text-slate-950 text-[10px] font-bold px-2 py-0.5 rounded shadow whitespace-nowrap">
+                Copied!
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         3. EDUCATION SECTION (Compact timeline / lined list)
+         ======================================================================= -->
+    <section id="education" class="scroll-mt-24 space-y-6">
+      
+      <!-- Centered Distinctive Section Header -->
+      <div class="text-center max-w-xl mx-auto space-y-2 mb-8">
+        <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 dark:text-cyan-400 bg-blue-100/80 dark:bg-cyan-500/10 px-3.5 py-1 rounded-full border border-blue-200/60 dark:border-cyan-500/25">
+          Academic Background
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Education
+        </h2>
+        <div class="w-12 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full mx-auto"></div>
+      </div>
+
+      <!-- Compact Lined Timeline Container -->
+      <div class="bg-white/60 dark:bg-slate-900/40 rounded-xl p-5 sm:p-7 border border-slate-200/80 dark:border-cyan-500/20 shadow-sm backdrop-blur-sm">
+        <div id="education-timeline" class="space-y-4">
+          <!-- Dynamically populated from data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         4. SKILLS SECTION (CSS Grid with blue left-border accent)
+         ======================================================================= -->
+    <section id="skills" class="scroll-mt-24 space-y-6">
+      
+      <!-- Centered Distinctive Section Header -->
+      <div class="text-center max-w-xl mx-auto space-y-2 mb-8">
+        <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 dark:text-cyan-400 bg-blue-100/80 dark:bg-cyan-500/10 px-3.5 py-1 rounded-full border border-blue-200/60 dark:border-cyan-500/25">
+          Technical Competencies
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Skills & Expertise
+        </h2>
+        <div class="w-12 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full mx-auto"></div>
+      </div>
+
+      <!-- Skills Grid (1 col mobile, 2-3 col desktop) -->
+      <div id="skills-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Dynamically populated from data.js -->
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         5. PROJECTS SECTION (Responsive grid + gallery triggers)
+         ======================================================================= -->
+    <section id="projects" class="scroll-mt-24 space-y-6">
+      
+      <!-- Centered Distinctive Section Header -->
+      <div class="text-center max-w-xl mx-auto space-y-2 mb-8">
+        <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 dark:text-cyan-400 bg-blue-100/80 dark:bg-cyan-500/10 px-3.5 py-1 rounded-full border border-blue-200/60 dark:border-cyan-500/25">
+          Featured Work
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Projects & Highlights
+        </h2>
+        <div class="w-12 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full mx-auto"></div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Dynamically populated from data.js -->
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         6. CERTIFICATES SECTION (NO "Earned" Tag as requested)
+         ======================================================================= -->
+    <section id="certificates" class="scroll-mt-24 space-y-6">
+      
+      <!-- Centered Distinctive Section Header -->
+      <div class="text-center max-w-xl mx-auto space-y-2 mb-8">
+        <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 dark:text-cyan-400 bg-blue-100/80 dark:bg-cyan-500/10 px-3.5 py-1 rounded-full border border-blue-200/60 dark:border-cyan-500/25">
+          Credentials & Seminars
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Certificates & Training
+        </h2>
+        <div class="w-12 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full mx-auto"></div>
+      </div>
+
+      <!-- Certificates Grid (1 col mobile, 2 tablet, 3 desktop) -->
+      <div id="certificates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Dynamically populated from data.js -->
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         7. CONTACT SECTION & FOOTER
+         ======================================================================= -->
+    <section id="contact" class="scroll-mt-24 space-y-6">
+      
+      <!-- Centered Distinctive Section Header -->
+      <div class="text-center max-w-xl mx-auto space-y-2 mb-8">
+        <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 dark:text-cyan-400 bg-blue-100/80 dark:bg-cyan-500/10 px-3.5 py-1 rounded-full border border-blue-200/60 dark:border-cyan-500/25">
+          Let's Connect
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Get in Touch
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
+          Have an inquiry, collaborative development project, or opportunity? Feel free to reach out across any of the platforms below.
+        </p>
+        <div class="w-12 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full mx-auto"></div>
+      </div>
+
+      <!-- Contact Channels Card -->
+      <div class="bg-white/80 dark:bg-slate-900/80 rounded-2xl border border-blue-200/70 dark:border-cyan-500/25 p-6 sm:p-8 shadow-sm backdrop-blur-sm max-w-3xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          
+          <!-- Direct Email -->
+          <a 
+            id="contact-email-link" 
+            href="mailto:jaredbatoon05@gmail.com" 
+            class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 hover:border-blue-400 dark:hover:border-cyan-500 bg-slate-50/50 dark:bg-slate-950/40 transition-all group"
+          >
+            <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-cyan-500/10 text-blue-600 dark:text-cyan-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </div>
+            <div class="overflow-hidden">
+              <div class="text-[11px] font-mono uppercase text-slate-400 dark:text-slate-500">Email Address</div>
+              <div id="contact-email-text" class="text-xs font-semibold text-slate-800 dark:text-white truncate group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
+                jaredbatoon05@gmail.com
+              </div>
+            </div>
+          </a>
+
+          <!-- GitHub Profile -->
+          <a 
+            id="contact-github-link" 
+            href="https://github.com/jaredbatoon05" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 hover:border-blue-400 dark:hover:border-cyan-500 bg-slate-50/50 dark:bg-slate-950/40 transition-all group"
+          >
+            <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-cyan-500/10 text-blue-600 dark:text-cyan-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                <path d="M9 18c-4.51 2-5-2-7-2"/>
+              </svg>
+            </div>
+            <div class="overflow-hidden">
+              <div class="text-[11px] font-mono uppercase text-slate-400 dark:text-slate-500">GitHub Profile</div>
+              <div class="text-xs font-semibold text-slate-800 dark:text-white truncate group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
+                github.com/jaredbatoon05
+              </div>
+            </div>
+          </a>
+
+          <!-- Messenger -->
+          <a 
+            id="contact-msg-link" 
+            href="https://m.me/not2red" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 hover:border-blue-400 dark:hover:border-cyan-500 bg-slate-50/50 dark:bg-slate-950/40 transition-all group"
+          >
+            <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-cyan-500/10 text-blue-600 dark:text-cyan-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/>
+                <path d="M9.5 13.5 12 11l2.5 2.5"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-[11px] font-mono uppercase text-slate-400 dark:text-slate-500">Facebook Messenger</div>
+              <div class="text-xs font-semibold text-slate-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
+                m.me/not2red
+              </div>
+            </div>
+          </a>
+
+          <!-- Facebook -->
+          <a 
+            id="contact-fb-link" 
+            href="https://www.facebook.com/not2red" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 hover:border-blue-400 dark:hover:border-cyan-500 bg-slate-50/50 dark:bg-slate-950/40 transition-all group"
+          >
+            <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-cyan-500/10 text-blue-600 dark:text-cyan-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-[11px] font-mono uppercase text-slate-400 dark:text-slate-500">Facebook Profile</div>
+              <div class="text-xs font-semibold text-slate-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
+                facebook.com/not2red
+              </div>
+            </div>
+          </a>
+
+          <!-- Direct Phone -->
+          <a 
+            id="contact-phone-link" 
+            href="tel:09519732031" 
+            class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 hover:border-blue-400 dark:hover:border-cyan-500 bg-slate-50/50 dark:bg-slate-950/40 transition-all group"
+          >
+            <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-cyan-500/10 text-blue-600 dark:text-cyan-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-[11px] font-mono uppercase text-slate-400 dark:text-slate-500">Phone Number</div>
+              <div id="contact-phone-text" class="text-xs font-semibold text-slate-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors">
+                (0951) 973 2031
+              </div>
+            </div>
+          </a>
+
+          <!-- Location -->
+          <div class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-950/40">
+            <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-cyan-500/10 text-blue-600 dark:text-cyan-400 flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div class="overflow-hidden">
+              <div class="text-[11px] font-mono uppercase text-slate-400 dark:text-slate-500">Home Address</div>
+              <div id="contact-location-text" class="text-xs font-semibold text-slate-800 dark:text-white truncate">
+                Vica Labaan, San Quintin, Abra
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="mt-20 border-t border-blue-200/50 dark:border-cyan-500/20 py-8 bg-white/50 dark:bg-slate-950/50 backdrop-blur-sm transition-colors text-center text-xs">
+    <div class="max-w-5xl mx-auto px-4 space-y-3">
+      
+      <!-- Footer Icons Row -->
+      <div class="flex items-center justify-center gap-5 text-slate-400 dark:text-slate-500">
+        <!-- Email -->
+        <a href="mailto:jaredbatoon05@gmail.com" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors" title="Email">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/jaredbatoon05" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors" title="GitHub">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+            <path d="M9 18c-4.51 2-5-2-7-2"/>
+          </svg>
+        </a>
+
+        <!-- Phone -->
+        <a href="tel:09519732031" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors" title="Phone">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/not2red" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors" title="Facebook">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+
+        <!-- Messenger -->
+        <a href="https://m.me/not2red" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors" title="Messenger">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/>
+            <path d="M9.5 13.5 12 11l2.5 2.5"/>
+          </svg>
+        </a>
+      </div>
+
+      <p id="footer-tagline" class="text-slate-500 dark:text-slate-400 font-medium">
+        Engineering meaningful software solutions through curiosity and code.
+      </p>
+
+      <div class="text-[11px] text-slate-400 dark:text-slate-600">
+        <span id="footer-copyright">© 2026 Jared L. Batoon. All rights reserved.</span>
+        <span class="mx-2">•</span>
+        <span>Ready for Vercel Deployment</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       MODAL 1: INTERACTIVE PROJECT GALLERY SLIDER
+       ========================================================================= -->
+  <div id="gallery-modal" class="fixed inset-0 z-50 hidden bg-black/80 modal-backdrop-blur flex items-center justify-center p-3 sm:p-6" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-3xl bg-white dark:bg-slate-900 border border-blue-300 dark:border-cyan-500/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Modal Top Bar -->
+      <div class="flex items-center justify-between px-4 py-3 border-b border-slate-200 dark:border-slate-800">
+        <div>
+          <span id="gallery-modal-category" class="text-[10px] font-mono uppercase tracking-wider text-blue-600 dark:text-cyan-400 font-semibold"></span>
+          <h3 id="gallery-modal-title" class="text-sm sm:text-base font-bold text-slate-900 dark:text-white"></h3>
+        </div>
+        <button id="gallery-close-btn" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none transition-colors" aria-label="Close Gallery">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Slide Viewport -->
+      <div class="relative w-full bg-black/90 flex items-center justify-center overflow-hidden min-h-[260px] sm:min-h-[380px] max-h-[55vh]">
+        <img 
+          id="gallery-slide-img" 
+          src="" 
+          alt="Gallery Slide" 
+          class="w-full h-full object-contain max-h-[55vh] transition-all duration-300"
+        />
+
+        <!-- Prev / Next Controls -->
+        <button id="gallery-prev-btn" class="absolute left-3 p-2 rounded-full bg-black/60 text-white hover:bg-blue-600 transition-colors focus:outline-none backdrop-blur-sm" aria-label="Previous Slide">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button id="gallery-next-btn" class="absolute right-3 p-2 rounded-full bg-black/60 text-white hover:bg-blue-600 transition-colors focus:outline-none backdrop-blur-sm" aria-label="Next Slide">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <!-- Slide Counter Badge -->
+        <div id="gallery-slide-counter" class="absolute top-3 right-3 text-[11px] font-mono px-2 py-0.5 rounded bg-black/60 text-white backdrop-blur-sm">
+          1 / 1
+        </div>
+      </div>
+
+      <!-- Slide Caption & Dot Navigation -->
+      <div class="p-4 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p id="gallery-slide-caption" class="text-xs text-slate-600 dark:text-slate-300 italic text-center sm:text-left">
+          <!-- Caption text -->
+        </p>
+        <div id="gallery-dots-container" class="flex items-center gap-1.5 shrink-0">
+          <!-- Slide indicators -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 2: CERTIFICATE INSPECT LIGHTBOX MODAL
+       ========================================================================= -->
+  <div id="cert-modal" class="fixed inset-0 z-50 hidden bg-black/85 modal-backdrop-blur flex items-center justify-center p-3 sm:p-6" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-4xl bg-white dark:bg-slate-900 border border-blue-300 dark:border-cyan-500/40 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[94vh] animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Modal Top Bar -->
+      <div class="flex items-center justify-between px-4 py-3 border-b border-slate-200 dark:border-slate-800">
+        <div>
+          <span id="cert-modal-issuer" class="text-[10px] font-mono uppercase tracking-wider text-blue-600 dark:text-cyan-400 font-semibold"></span>
+          <h3 id="cert-modal-title" class="text-sm sm:text-base font-bold text-slate-900 dark:text-white"></h3>
+        </div>
+        <button id="cert-modal-close" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none transition-colors" aria-label="Close Certificate Preview">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- High-Res Certificate Image -->
+      <div class="p-2 sm:p-4 bg-slate-950 flex items-center justify-center overflow-auto max-h-[70vh]">
+        <img 
+          id="cert-modal-img" 
+          src="" 
+          alt="Certificate Full View" 
+          class="max-w-full max-h-[66vh] object-contain rounded shadow-lg border border-slate-800"
+        />
+      </div>
+
+      <!-- Details Footer -->
+      <div class="px-4 py-3 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+        <span id="cert-modal-date" class="text-slate-600 dark:text-slate-400 font-medium"></span>
+        <span id="cert-modal-id" class="font-mono text-slate-400 dark:text-slate-500 text-[11px]"></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Floating Back to Top Button -->
+  <button 
+    id="back-to-top-btn" 
+    type="button" 
+    class="fixed bottom-6 right-6 z-40 p-2.5 rounded-full bg-blue-600 hover:bg-blue-700 dark:bg-cyan-500 dark:hover:bg-cyan-400 text-white dark:text-slate-950 shadow-lg dark:shadow-[0_0_15px_rgba(0,210,255,0.5)] transition-all duration-300 opacity-0 pointer-events-none translate-y-3 hover:scale-110 active:scale-95 focus:outline-none"
+    aria-label="Back to Top"
+    title="Back to top"
+  >
+    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
+
+  <!-- Centralized Portfolio Data File -->
+  <script src="./data.js"></script>
+
+  <!-- Application Logic -->
+  <script src="./app.js"></script>
+</body>
+</html>
